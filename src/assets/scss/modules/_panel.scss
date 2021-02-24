@@ -1,0 +1,30 @@
+.fixed-panel {
+    @include border(left, solid, 1px, $regular);
+    @include box-shadow(0, 0, 50px,$dark,null);
+    position: fixed;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    background: $white;
+    z-index: $z-filter;
+    left: auto;
+    width: 345px;
+}
+
+/* media queries */
+
+@include breakpoint("desktop-wide", min) {
+    .fixed-panel {
+        left: 79%;
+        width: auto;
+    }
+}
+@include breakpoint("laptops", min) {
+    .fixed-panel {
+        left: 74%;
+        width: auto;
+    }
+}
+
+
+    

@@ -1,0 +1,49 @@
+.breadcrumb {
+    // margin-bottom: 0;
+    @include padding(xy, 0.893rem, 1.5rem);
+    @include margin(bottom, 0);
+    align-items: center;
+    background: $white;
+    
+}
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    cursor: default;
+    &:not(:first-child) {
+        &::before {
+            @include pseudo(block, static, "\69");
+            @include padding(right, 0.8rem);
+            @include padding(left, 0.7rem);
+            font-family: $font-family-icon;
+            color: $dark;
+        }
+    }
+    .title {
+        color: $regular;
+    }
+    font-size:16px;
+    font-family: $font-medium;
+    .icon {
+        display: flex;
+        align-self: center;
+        font-size: $font-icon;
+    }
+    &.active {
+        .title {
+            color: $primary;
+        }
+    }
+    &:hover {
+        .title {
+            color: $secondary-light;
+            cursor: pointer;
+        }
+        &.active {
+            .title {
+                color: $primary;
+                cursor: default;
+            }
+        }
+    }
+}

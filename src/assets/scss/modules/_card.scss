@@ -1,0 +1,126 @@
+.card {
+    @include border-radius(all, 0);
+    @include border(all, solid, 1px, $gray-accent);
+    height: 100%;
+    .card-header {
+        @include padding(xy, .8rem, 1rem);
+        @include border(bottom, solid, 1px, $gray-accent);
+        display: flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: space-between;
+        width: auto;
+        max-width: 100%;
+        font-family: $font-regular;
+        font-size: $font-xl;
+        background-color: $white;
+        text-transform: capitalize;
+        .icon {
+            @include margin(right, 1rem);
+            font-size: $font-icon;
+            display: flex;
+        }
+    }
+    .card-body {
+        overflow-y: auto;
+        height: 100%;
+        @include padding(all, 1rem);
+    }
+    .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0.75rem 1.25rem 25px 1.25rem;
+        @extend %border-none;
+        background-color: $white;
+    }
+}
+/* various box of information used in card */
+.card-box {
+    .card-box-details {
+        display: flex;
+        align-items: stretch;
+        @include border(all, solid, 1px, $gray-accent);
+        @include padding(all, 1.5rem);
+        background-color: $gray;
+        overflow: hidden;
+        /* data within box */
+        .card-data {
+            padding-left: 1.5rem;
+            &:before{
+                content: '';
+                position: absolute;
+                left: -2px;
+                border-left: 2px solid $gray-accent;
+                height: 100%;
+            }
+        }
+        /* title in card-data */
+        .title {
+            @include margin(bottom, 1rem);
+            text-transform: uppercase;
+            color: $primary;
+            white-space: nowrap;
+        }
+        /* info in card-data */
+        .info {
+            text-transform: capitalize;
+            color: $dark;
+        }
+    }
+    /* second box with header */
+    .card-box-list {
+        @include margin(top, 1rem);
+        @include padding(all, 1rem);
+        @include border(all, solid, 1px, $gray-accent);
+        .box-header {
+            @include margin(bottom, 1rem);
+            color: $secondary-dark;
+            text-transform: capitalize;
+        }
+        .box-body {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            @include padding(top, 1.5rem);
+            .title {
+                @include margin(bottom, 1rem);
+                color: $secondary-dark;
+            }
+        }
+    }
+}
+/* list of details in side-panels */
+.card-list {
+    &.active {
+        @include box-shadow(4px, 0, 0, 0, $warning, inset);
+    }
+}
+/* media query to adjust width of sidepanels */
+@include breakpoint("tablet", min) {
+    .column {
+        &.col-1 {
+            flex: 0 0 5.33333%;
+            max-width: 5.33333%;
+            overflow: hidden;
+        }
+    }
+}
+/* media query to show border for Deal administartor for screen above 1200px */
+@include breakpoint("bt-xl-screen", min) {
+    .column {
+        &.col-3 {
+            flex: 0 0 22%;
+            max-width: 22%;
+        }
+        &.col-4 {
+            flex: 0 0 28.645%;
+            max-width: 28.645%;
+        }
+        &.col-1 {
+            flex: 0 0 4.33333%;
+            max-width: 4.33333%;
+            overflow: hidden;
+        }
+    }
+}

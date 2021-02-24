@@ -1,0 +1,20 @@
+.filter-box {
+    @include border(left, solid, 1px, $regular);
+    @include box-shadow(0, 0, 50px,$dark,null);
+    position: fixed;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    background: $white;
+    z-index: $z-filter;
+    left: 79%;
+    
+}
+
+/* media queries */
+
+@include breakpoint("desktop-wide", max) {
+    .filter-box {
+        left: 74%;
+    }
+}

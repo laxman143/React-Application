@@ -1,0 +1,156 @@
+html,
+body {
+  overflow: hidden;
+  background-color: $body-bg;
+  height: 100%;
+  font-family: $font-regular;
+  color: $regular;
+  font-size: $font-base;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-medium;
+  margin-bottom: 0;
+}
+
+h1 {
+  font-size: $font-xxxl;
+}
+
+h2 {
+  font-size: $font-xxl;
+}
+
+h3 {
+  font-size: $font-xl;
+}
+
+h4 {
+  font-size: $font-lg;
+}
+
+h5 {
+  font-size: $font-m;
+}
+
+h6 {
+  font-size: $font-base;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* 2px width border */
+
+.fat-border {
+  border-width: 2px !important;
+}
+
+/* calender icon */
+
+.cal-icon {
+  font-size: 25px;
+  color: $primary;
+}
+
+/* Main page css */
+
+.content {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0px;
+  top: 70px;
+  background-color: $gray;
+  font-size: $font-base;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+//Weight
+.font-weight-light {
+  font-family: $font-light;
+}
+
+.font-weight-regular {
+  font-family: $font-regular;
+}
+
+.font-weight-medium {
+  font-family: $font-medium;
+}
+
+.font-weight-semi-bold {
+  font-family: $font-semi-bold;
+}
+
+.font-weight-bold {
+  font-family: $font-bold;
+}
+
+/* overlay *Backdrop* */
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-overlay;
+  background: transparent;
+  background: rgba($dark, 0.2);
+}
+
+/* disable  area*/
+.disable-content {
+  pointer-events: none;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $z-overlay;
+    background: transparent;
+    background: rgba($dark, .2);
+  }
+}
+
+.badge {
+  border-radius: 10px;
+}
+/* dedicated for amortization schedule table to proper align data with icon */
+.data-with-info-icon {
+  min-width: 120px;
+  max-width: 120px;
+  .icon-info-center {
+    top: 2px;
+    right:0;
+  }
+}
+
+.headerM {
+  margin-top:49px;
+}
