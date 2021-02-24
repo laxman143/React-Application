@@ -1,0 +1,82 @@
+/*
+    Author: Vidya Satpute
+    Desc: All variables used in this app are declared here
+*/
+/* *
+Theme Colors
+* */
+$primary-dark: #668FA4;
+$primary: #458C97;
+$primary-light: #8AA29B;
+$secondary-dark: #3B5065;
+$secondary: #3A4C85;
+$secondary-light: #6784D2;
+$danger-dark: #87566C;
+$danger: #D8625C;
+$warning-dark: #FFDB6C;
+$warning: #F4AA00;
+$success: #38a51d;
+$regular: #939393;
+$dark: #000000;
+$white: #fff;
+$gray-lighter: #f9f9f9;
+$gray: #f5f6f8;
+$gray-accent: #d3d3d3;
+/** 
+ Fonts family 
+**/
+
+$font-light: 'robotolight';
+$font-regular: 'robotoregular';
+$font-medium: 'robotomedium';
+$font-semi-bold: 'robotosemi-bold';
+$font-bold: 'robotobold';
+$font-family-icon:'app-icons',Sans-serif;
+/* 
+  *Common Border radius
+*/
+
+$border-radius-input: 3px;
+$border-radius: 5px;
+/* 
+  *z-index
+*/
+
+$z-header: 202;
+$z-filter: 201;
+$z-overlay: 203;
+$z-settings: 204;
+$z-loader: 9999;
+$z-table-header: 200;
+/* 
+  *FONT-SIZE
+*/
+
+$font-xs: 10px;
+$font-sm: 12px;
+$font-base: 14px;
+$font-m: 15px;
+$font-lg: 16px;
+$font-xl: 20px;
+$font-xxl: 22px;
+$font-xxxl: 24px;
+$font-icon: 25px;
+$font-icon-lg: 26px;
+$font-icon-xl:45px;
+/* 
+*THEMES 
+*/
+
+/* Common theme */
+
+$theme-colors: ( "primary-dark": $primary-dark, "primary": $primary, "primary-light": $primary-light, "secondary": $secondary, "secondary-light": $secondary-light, "secondary-dark": $secondary-dark, "warning": $warning, "warning-dark": $warning-dark, "danger": $danger, "danger-dark": $danger-dark, "dark": $dark, "regular": $regular, "gray": $gray, "gray-accent": $gray-accent, "gray-lighter": $gray-lighter, "success":$success);
+/* Replacing calender's(BS Datepicker) theme */
+
+$theme-list: ( 'default': $primary, 'green':$primary, );
+/* theme for validation and toastr */
+
+$theme-validation:("success": $success, "info": $primary, "error":$danger, "warning": $warning);
+/* Responsiveness breakpoints */
+
+$breakpoints: ( "phone": 400px, "phone-wide": 480px, "phablet": 560px, "tablet-small": 640px, "tablet": 768px, "laptops":992px, "tablet-wide": 1024px,"bt-xl-screen": 1200px, "laptop-mini": 1248px, "laptop": 1366px, "desktop-wide": 1440px, "desktop-xl":1600px, );
+

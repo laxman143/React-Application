@@ -1,0 +1,29 @@
+/*button used in theme */
+.btn{
+    @include btn;
+    &.btn-transparent{
+        @extend %btn-transparent;
+    }
+    /* download button used in title od GL Entries */
+    &-download{
+        .extra-info{
+            display: none;
+        }
+        &:hover{
+            .title{
+                display: none;
+            }
+            .extra-info{
+                display: block;
+            }             
+        }
+    }
+}
+/* 
+    *status class
+    *usage: (status-success) class for success status
+*/
+
+.status {
+    @include status;
+}

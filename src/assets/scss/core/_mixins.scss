@@ -1,0 +1,394 @@
+/*
+    Author: Vidya Satpute
+    Desc: Use @include to import the CSS rules from mixins
+*/
+
+// To apply CSS rules to input textbox
+// value of @content would be apply for CSS Rules which is apply on particular element
+/* 
+    Ex:
+
+    input,  
+    textarea {  
+        @include input-placeholder {
+            color: $grey;
+        }
+    }
+
+*/
+
+@mixin input-placeholder {
+    &.placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+@mixin border-radius($for:all, $val:$border-radius) {
+    @if $for==all {
+        border-radius: $val;
+    }
+
+    @else if $for==top {
+        border-top-left-radius: $val;
+    }
+
+    @else if $for==right {
+        border-top-right-radius: $val;
+    }
+
+    @else if $for==bottom {
+        border-bottom-right-radius: $val;
+    }
+
+    @else if $for==left {
+        border-bottom-left-radius: $val;
+    }
+}
+
+// To apply borders
+// ARG: $for as [all,top,right,bottom,left],$type as [any border type value], $size as [any CSS unit], $color as [any CSS unit]
+@mixin border($for, $type, $size, $color) {
+    @if $for==all {
+        border: $size $type $color;
+    }
+
+    @else if $for==top {
+        border-top: $size $type $color;
+    }
+
+    @else if $for==right {
+        border-right: $size $type $color;
+    }
+
+    @else if $for==bottom {
+        border-bottom: $size $type $color;
+    }
+
+    @else if $for==left {
+        border-left: $size $type $color;
+    }
+}
+
+// To apply outline
+@mixin outline($width, $type, $color: initial) {
+    outline: $width $type $color;
+}
+
+// To apply margin
+// ARG: $for as [all,top,right,bottom,left], $size as [any CSS unit], 
+@mixin margin($for, $a, $b:null) {
+    @if $b==null {
+        @if $for==all {
+            margin: $a;
+        }
+
+        @else if $for==top {
+            margin-top: $a;
+        }
+
+        @else if $for==right {
+            margin-right: $a;
+        }
+
+        @else if $for==bottom {
+            margin-bottom: $a;
+        }
+
+        @else if $for==left {
+            margin-left: $a;
+        }
+    }
+
+    @else if $for==xy {
+        margin: $a $b;
+    }
+}
+
+/* 
+    *To apply padding
+    *ARG: $for as [all,top,right,bottom,left], $size as [any CSS unit], 
+    *eg: @include padding(right, 1px);
+*/
+
+@mixin padding($for, $a, $b:null) {
+    @if $b==null {
+        @if $for==all {
+            padding: $a;
+        }
+
+        @else if $for==top {
+            padding-top: $a;
+        }
+
+        @else if $for==right {
+            padding-right: $a;
+        }
+
+        @else if $for==bottom {
+            padding-bottom: $a;
+        }
+
+        @else if $for==left {
+            padding-left: $a;
+        }
+    }
+
+    @else if $for==xy {
+        padding: $a $b;
+    }
+}
+
+// To add an ellipsis
+// ARG: $truncation-boundary as maximun width in [any CSS Unit]
+@mixin truncate($truncation-boundary) {
+    max-width: $truncation-boundary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// To add an box-shadow
+@mixin box-shadow($top, $left, $blur, $spread-color, $color, $inset: null) {
+    @if $inset==null {
+        -moz-box-shadow: $top $left $blur $color;
+        -webkit-box-shadow: $top $left $blur $color;
+        box-shadow: $top $left $blur $color;
+    }
+
+    @else {
+        -moz-box-shadow: inset $top $left $blur $color;
+        -webkit-box-shadow: inset $top $left $blur $color;
+        box-shadow: inset $top $left $blur $color;
+    }
+}
+
+/* 
+    mixin to create status color and bacgkround color for statuses
+    usage: For active status use class status-active
+*/
+
+@mixin status {
+
+    @each $name,
+    $hex in $theme-colors {
+        &-#{$name} {
+            color: $hex;
+            background-color: rgba($hex, .2);
+            @extend %status;
+        }
+    }
+}
+
+// mixin for validation message to get all theme of error, success,warning and info
+@mixin validation {
+
+    @each $name,
+    $hex in $theme-validation {
+        &-#{$name} {
+            @include border-radius(all, $border-radius);
+            background-color: darken($hex, 5%);
+            @include box-shadow(2px, 2px, 10px, rgba(darken($hex, 10%), 0.4), null);
+            border: 1px solid darken($hex, 10%);
+            @extend %validation;
+
+            &:after {
+                @include css-triangle(darken($hex, 5%), up, 5px, absolute, false);
+                top: -5px;
+                left: 7px;
+            }
+
+            &:before {
+                @include css-triangle(darken($hex, 10%), up, 7px, absolute, false);
+                top: -7px;
+                left: 5px;
+            }
+        }
+    }
+}
+
+// To use responsive break point
+// ARG: $width as $breakpoints from _variable.scss, $type as [min,max]
+// value of @content would be apply for CSS Rules which is apply on particular element
+@mixin breakpoint($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+
+        @if $type==max {
+            $width: $width - 1px;
+        }
+
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}
+
+// mixin for toastr to get all theme of current application 
+@mixin toast {
+
+    @each $name,
+    $hex in $theme-validation {
+        &-#{$name} {
+            background-color: $hex;
+            border: 1px solid $hex;
+            color: color-yiq($hex);
+            
+        }
+
+    }
+}
+
+
+// To apply predefine pseudo CSS Rules
+// ARG: $display as [block,inline,inline-block,initial,inherit,], $pos as [absolute,relative,fixed,static]
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+//To apply Transform css
+// Browser Prefixes
+@mixin transform($transforms) {
+    -webkit-transform: $transforms;
+    -moz-transform: $transforms;
+    -ms-transform: $transforms;
+    transform: $transforms;
+}
+
+// Rotate
+//usage: @include rotate(45);
+@mixin rotate ($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+
+// To apply CSS triangle
+// ARG: $colo as [any CSS unit], $direction as [up,right,left,down], $size as [any CSS unit], $pos as [absolute,relative,fixed,static], $round[optional]
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false) {
+    @include pseudo($pos: $position);
+    width: 0;
+    height: 0;
+
+    @if $round {
+        border-radius: 3px;
+    }
+
+    @if $direction==down {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+        margin-top: 0 - round($size / 2.5);
+    }
+
+    @else if $direction==up {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        margin-bottom: 0 - round($size / 2.5);
+    }
+
+    @else if $direction==right {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+        margin-right: -$size;
+    }
+
+    @else if $direction==left {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+        margin-left: -$size;
+    }
+}
+
+/*
+    Example usage: 
+    @include animation(10s, 5s, changecolour)
+ */
+
+@mixin animation ($delay, $duration, $animation) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-fill-mode: forwards;
+    /* this prevents the animation from restarting! */
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-fill-mode: forwards;
+    /* this prevents the animation from restarting! */
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-fill-mode: forwards;
+    /* this prevents the animation from restarting! */
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-fill-mode: forwards;
+    /* this prevents the animation from restarting! */
+}
+
+/* To add keyframes for an animation */
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+/* mixin to declare animation name */
+
+@mixin btn {
+
+    @each $name,
+    $color in $theme-colors {
+
+        &.btn-#{$name},
+        &.btn-outline-#{$name} {
+            @extend %buttons;
+        }
+
+        &.btn-outline-#{$name} {
+            border-width: 2px;
+            background-color: transparent;
+
+            &:hover {
+                background-color: $color;
+            }
+        }
+    }
+}

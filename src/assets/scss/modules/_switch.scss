@@ -1,0 +1,57 @@
+.switch {
+    position: relative;
+    padding: 5px;
+    background-color: $gray;
+    @include border-radius(all, $border-radius);
+    width: 70px;
+    height: 38px;
+    cursor: pointer;
+    @include box-shadow(2px, 1px, 2px, 0px, darken($gray, 10%), inset);
+    @include border(all, solid, 1px, darken($gray, 2%));
+
+    .toggle-switch {
+        height: 26px;
+        width: 25px;
+        background-color: $white;
+        @include border-radius(all, $border-radius);
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        @include box-shadow(2px, 2px, 4px, 0px, darken($gray, 10%));
+        @include border(all, solid, 1px, darken($gray, 2%));
+
+        &:after {
+            @include pseudo(block, absolute, 'OFF');
+            left: 32px;
+            color: $regular;
+            top: 3px;
+            font-size: $font-sm;
+        }
+
+    }
+}
+
+.switch-button {
+    position: absolute;
+    z-index: -1;
+
+    &:checked {
+        +.switch {
+            background-color: $secondary-dark;
+            box-shadow: none;
+
+            .toggle-switch {
+                left: auto;
+                right: 5px;
+                box-shadow: none;
+
+                &:after {
+                    @include pseudo(block, absolute, 'ON');
+                    color: $white;
+                    left: -27px;
+                    top: 3px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+.custom-tooltip {
+  .tooltip-inner {
+    padding: 0;
+    min-width: 250px;
+    font-size: 13px;
+  }
+  .tooltip-header {
+    font-family: $font-regular;
+    @include border(bottom, solid, 1px, rgba($white, 0.2));
+  }
+  .arrow {
+    left: 15px !important;
+  }
+}
+.arrow {
+  left: 10px !important;
+}
+.arrow-left-0 {
+  .arrow {
+    left: 0 !important;
+  }
+}
+.arrow-center{
+  .arrow {
+    left: 50% !important;
+  }
+}
+.tooltip-inner {
+  max-width: 500px;
+}
+/* For the ban icon used in facilities */
+.icon-right {
+  font-size: $font-xl;
+  right: 1px;
+  top: -19px;
+}

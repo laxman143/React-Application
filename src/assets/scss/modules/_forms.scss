@@ -1,0 +1,508 @@
+/* small size label */
+.small-label {
+    @include margin(bottom, 0);
+    font-family: $font-medium;
+    color: $secondary-dark;
+    text-transform: capitalize;
+}
+
+.form-control {
+    @extend %form-control;
+
+    @include input-placeholder {
+        color: $regular;
+        font-size: $font-base;
+    }
+}
+
+/* form group */
+
+.form-group {
+    label {
+        @include margin(bottom, .5rem);
+        font-size: $font-lg;
+        color: $dark;
+    }
+}
+
+/* input group */
+
+.input-group {
+    @include border(all, solid, 1px, $secondary-dark);
+    @include border-radius(all, $border-radius-input);
+    background-color: $white;
+
+    &:hover {
+        background-color: $gray-lighter;
+    }
+
+    .form-control {
+        background-color: transparent;
+    }
+
+    .input-group-prepend {
+        .input-group-text {
+            @include padding(right, 0);
+            @include padding(left, .25rem);
+            @extend %border-none;
+            font-size: $font-xxxl;
+            background-color: transparent;
+            color: $secondary-dark;
+        }
+
+        .ng-select .ng-select-container {
+            @extend %border-none;
+            @include border(right, solid, 1px, $regular);
+            @include border-radius(right, 0);
+            @include border-radius(bottom, 0);
+            width: 110px;
+            background-color: $gray;
+        }
+    }
+}
+
+/* radio button for sorting (only text radio button)*/
+
+.radio-sort {
+    &-label {
+        text-transform: none;
+        border-radius: $border-radius-input;
+
+        &:hover {
+            color: $secondary-light;
+        }
+    }
+
+    &:checked {
+        +.radio-sort-label {
+            font-family: $font-medium;
+            border-color: $secondary-light;
+            color: $warning;
+        }
+    }
+}
+
+/* validation message */
+
+.validation {
+    @include validation();
+}
+
+/* ng -select */
+
+.ng-select {
+    .ng-arrow-wrapper {
+        @include padding(right, 15px);
+
+        .ng-arrow {
+            @extend %border-none;
+
+            &:after {
+                content: "\6d";
+                color: $primary;
+                font-family: $font-family-icon;
+                font-size: $font-sm;
+            }
+        }
+    }
+
+    .ng-select-container {
+        @include border(all, solid, 1px, $regular);
+
+        &:hover {
+            background-color: $gray-lighter;
+        }
+
+        .ng-value-container {
+
+            /* place holder */
+            .ng-placeholder {
+                font-size: $font-base;
+                font-family: $font-medium;
+                color: $secondary-dark;
+            }
+        }
+    }
+
+    &.auto-width {
+        .ng-dropdown-panel {
+            &.ng-select-bottom {
+                width: auto;
+            }
+        }
+    }
+
+    &.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+        border-color: $regular;
+        box-shadow: none;
+    }
+
+    &.ng-select-opened>.ng-select-container .ng-arrow {
+        border: none;
+
+        &:after {
+            content: "\6c";
+            color: $primary;
+            font-family: $font-family-icon;
+            font-size: $font-sm;
+        }
+    }
+
+    .ng-select-opened.ng-select-bottom>.ng-select-container {
+        border-radius: $border-radius-input;
+    }
+}
+
+/* ng drop down panel */
+
+.ng-dropdown-panel {
+    &.ng-select-bottom {
+        border-radius: $border-radius-input;
+        @include margin(top, 2px);
+        @include padding(xy, 0, .5rem);
+        @include box-shadow(0, 0, 10px, rgba(0, 0, 0, 0.2), null);
+
+        .ng-dropdown-panel-items {
+            .ng-option {
+                @include border(bottom, solid, 1px, $gray-accent);
+                font-family: $font-regular;
+
+                &.ng-option-marked {
+                    font-family: $font-regular;
+                    background-color: $white;
+                    color: $secondary-light;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
+
+/* custom ng-select with no border and auto width */
+
+.ng-select.custom {
+    @extend %border-none;
+    @include border-radius(all, 0);
+    min-height: 0;
+    // top: -7px;
+    bottom: 38px;
+    right: 0;
+    font-size: $font-xs;
+
+    &.ng-select-single {
+        .ng-select-container {
+            position: relative;
+            @extend %border-none;
+            min-height: 0;
+            height: auto;
+            font-size: $font-xs;
+            color: $secondary-light;
+            font-family: $font-medium;
+
+            .ng-placeholder {
+                font-size: $font-xs;
+                color: $secondary-light;
+                text-transform: uppercase;
+                font-family: $font-medium;
+            }
+
+            .ng-value-container {
+                flex: 1 0 auto;
+            }
+
+            .ng-arrow-wrapper {
+                @include padding(right, 0);
+
+                .ng-arrow {
+                    top: 2px;
+                    border-color: $secondary-light transparent transparent;
+                    border-style: solid;
+                    border-width: 5px 5px 2.5px;
+
+                    &:after {
+                        @include pseudo(block, absolute, none);
+                    }
+                }
+            }
+        }
+
+        .ng-value-container {
+            .ng-input {
+                top: 0;
+            }
+        }
+
+        &.ng-select-opened>.ng-select-container .ng-arrow {
+            top: 0;
+            border-color: transparent transparent $secondary-light;
+            border-style: solid;
+            border-width: 0 5px 5px;
+
+            &:after {
+                content: none;
+            }
+        }
+    }
+
+    &.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+        border-color: none;
+        box-shadow: none;
+    }
+
+    .ng-dropdown-panel {
+        font-size: 11px;
+        color: $secondary-light;
+        text-transform: none;
+        font-family: $font-medium;
+        width: auto;
+        /* for filter box */
+        left: auto;
+        right: 0;
+    }
+}
+
+/* ng mutli select */
+
+.ng-multi-select {
+    .ng-option {
+        position: relative;
+        padding-left: 35px !important;
+
+        &.ng-option-selected {
+            background-color: $white;
+
+            &::before {
+                position: absolute;
+                top: 10px;
+                left: 12px;
+                border: none;
+                z-index: 1;
+                content: "\74";
+                font-family: $font-family-icon;
+                size: 12px;
+                color: #ffffff;
+                font-size: $font-xs;
+            }
+
+            &::after {
+                background-color: $primary;
+                border: 1px solid $primary;
+            }
+        }
+
+        &:after {
+            @include pseudo(inline-block, absolute, "");
+            left: 8px;
+            width: 20px;
+            height: 20px;
+            background-color: $gray;
+            border: 1px solid $gray-accent;
+            border-radius: $border-radius-input;
+        }
+    }
+
+    .ng-select-container {
+        .ng-value-container {
+            .ng-value {
+                .ng-value-label {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+/* The custom-checkbox */
+
+.custom-checkbox {
+    @include padding(left, 30px);
+    @include margin(bottom, 0);
+    @extend %user-select-none;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    font-size: 13px;
+
+    /* On mouse-over, add a gray background color */
+    &:hover {
+        input~.check {
+            background-color: $gray-accent;
+        }
+    }
+
+    /* Hide the browser's default checkbox */
+    input {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+        cursor: pointer;
+
+        /* When the checkbox is checked, add a primary background */
+        &:checked~.check {
+            background-color: $primary;
+            border: 1px solid $primary;
+
+            /* Show the check when checked */
+            &:after {
+                display: block;
+            }
+        }
+
+        &:focus~.check {
+            border: 1px solid $primary;
+        }
+    }
+
+    /* Create a custom checkbox */
+    .check {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: $gray;
+        border: 1px solid $gray-accent;
+        border-radius: $border-radius-input;
+
+        /* Create the check/indicator (hidden when not checked) */
+        &::after {
+            @include pseudo(none, absolute, "\63");
+            font-family: $font-family-icon;
+            left: 3px;
+            top: 0;
+            font-size: 11px;
+            color: $white;
+            text-transform: lowercase;
+        }
+    }
+}
+
+/*css of checkbox use to open/close side-panels 
+    ie: trade position, facilities
+*/
+
+.label-list-checkbox {
+    @include border(top, solid, 1px, $gray-accent);
+    @include border(right, solid, 1px, $gray-accent);
+    @include border(bottom, solid, 1px, $gray-accent);
+    @include border(left, solid, 4px, $primary);
+    background-color: $white;
+    cursor: pointer;
+
+    .label-list {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .title {
+            @include rotate(180);
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            writing-mode: vertical-rl;
+            color: $secondary-dark;
+        }
+    }
+
+    &:hover {
+        background-color: rgba($gray, 0.3);
+    }
+}
+
+.bs-datepicker {
+    position: relative;
+    right: 30px;
+}
+
+/* drop down used in typeahead */
+/* highlighted search alphabets of typeahead */
+.ngb-highlight {
+    color: $warning;
+}
+
+.dropdown-menu.show {
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+    max-height: 240px;
+    border-radius: 3px;
+    margin-top: 2px;
+    padding: 0 0.5rem;
+    @include box-shadow(0, 0, 10px, rgba(0, 0, 0, 0.2), null);
+}
+
+.dropdown-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px 10px;
+    border-bottom: 1px solid $gray-accent;
+
+    &.active {
+        background: transparent;
+        color: $secondary-light;
+    }
+
+    &:hover {
+        color: $secondary-light;
+    }
+}
+
+/* radio  button */
+.radio-button-tab {
+    font-size: $font-lg;
+    font-family: $font-medium;
+    color: $secondary-dark;
+
+    &.radio-btn-sm {
+        color: $regular;
+        font-size: $font-m;
+
+        &:hover {
+            color: darken($regular, 20%);
+        }
+    }
+
+    &:hover {
+        color: $dark
+    }
+}
+
+.btn-radio-tab {
+    position: absolute;
+    z-index: -1;
+
+    &:checked,
+    &:focus {
+        +.radio-button-tab {
+            color: $dark;
+            position: relative;
+            &.radio-btn-sm {
+                color: $warning;
+                &:after{
+                    content: "";
+                    height: 2px;
+                    width: 100%;
+                    left: 0px;
+                    right: 0;
+                    bottom: -1px;
+                }
+            }
+            &:after {
+                content: "";
+                height: 4px;
+                width: 90%;
+                position: absolute;
+                background-color: $warning;
+                left: 10px;
+                right: 0;
+                bottom: -2px;
+            }
+        }
+    }
+}

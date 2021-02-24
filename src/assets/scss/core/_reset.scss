@@ -1,0 +1,11 @@
+/* Reset CSS rules of Root level elements  */
+a:hover {
+    text-decoration: none;
+}
+
+ul {
+    @include margin(bottom, 0);
+    list-style: none;
+}
+
+

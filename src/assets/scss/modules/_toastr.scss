@@ -1,0 +1,14 @@
+#toast-container {
+  .toast {
+    @include toast();
+    opacity: 1;
+  }
+  .toast-title {
+    font-size: $font-m;
+    font-family: $font-medium;
+    font-weight: 500;
+  }
+  .toast-message {
+    font-size: $font-base;
+  }
+}

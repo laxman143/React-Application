@@ -1,0 +1,56 @@
+.loader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba($dark, .3);
+    z-index: $z-loader;
+}
+
+.loading-image {
+    width: 50px;
+    height: 50px;
+}
+
+/* small loader  within  elements*/
+.small-loader {
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+/* loader used in configuration setting page */
+.spinner{
+    position: relative;
+    height: 70px;
+}
+.spinner-container {
+    position: absolute;
+    background-color: $white;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .spinner-circle {
+        height: 0;
+        width: 0;
+        padding: 10px;
+        border: 5px solid $primary;
+        border-right-color: $white;
+        border-radius: 22px;
+        @include animation(0, 1s, rotate);
+        animation-direction: linear;
+        animation-iteration-count: infinite;
+          }
+
+}
+@include keyframes(rotate) {
+    100% {
+        @include rotate(360);
+    }
+}
